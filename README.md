@@ -5,6 +5,9 @@
 
   ## Criação do ambiente virtual:
     virtualenv env
+  
+  ## Criação do ambiente virtual sem Virtualenv:
+    python -m venv env
 
   ## Ativação do ambiente virtual:
     env\Scripts\activate
