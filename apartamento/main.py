@@ -14,6 +14,15 @@ from util import *
 # from luz import *
 # from abajur import *
 
+
+
+
+
+from camera import Camera
+
+
+
+
 # glutInit(argv)
 # glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
 # glutInitWindowSize(0,0)
@@ -140,7 +149,7 @@ for i in range(len(paredes)):
         colisoes.append(paredes[i])
 
 tomme = OBJ('tomme.obj', pos=[0, 0, 0])
-
+camera = Camera((0, 1, 0), (10, 2 , 0), (0, 1, 0), tomme)
 # personagem = OBJ("cubo.obj", pos=[0,0,0])
 # mesinha = OBJ("cubo.obj",pos=[-3,0,3])
 
@@ -152,6 +161,8 @@ width, height = viewport
 gluPerspective(70.0, width/float(height), 1, 100.0)
 glEnable(GL_DEPTH_TEST)
 glMatrixMode(GL_MODELVIEW)
+
+
 
 # rx, ry = (0,0)
 # tx, ty = (0,0)
@@ -230,6 +241,10 @@ while True:
                 move_left    = False
             elif e.key == K_d:
                 move_right   = False
+            elif e.key == K_RIGHT:
+                camera.rotate(1, 0, 1, 0)
+            elif e.key == K_LEFT:
+                camera.rotate(-1, 0, 1, 0)
 
         elif e.type == MOUSEBUTTONDOWN:
             if e.button == 4: zpos = max(1, zpos-1)
@@ -272,20 +287,24 @@ while True:
     # ===========================================================
     #============== movimentacao =================
     if move_forward and a['up'] == 0:
-        tomme.pos[0] -= move_speed
-        ty -= cam_move_speed
+        camera.move(-move_speed, 0, 0)
+        #tomme.pos[0] -= move_speed
+        #ty -= cam_move_speed
 
     elif move_back and a['down'] == 0:
-        tomme.pos[0] += move_speed
-        ty += cam_move_speed
+        camera.move(move_speed, 0, 0)
+        #tomme.pos[0] += move_speed
+        #ty += cam_move_speed
 
     elif move_left and a['left'] == 0:
-        tomme.pos[2] += move_speed
-        tx += cam_move_speed
+        camera.move(0, 0, move_speed)
+        #tomme.pos[2] += move_speed
+        #tx += cam_move_speed
 
     elif move_right and a['right'] == 0:
-        tomme.pos[2] -= move_speed
-        tx -= cam_move_speed
+        camera.move(0, 0, -move_speed)
+        #tomme.pos[2] -= move_speed
+        #tx -= cam_move_speed
     #=============================================
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -293,10 +312,11 @@ while True:
 
     # renderizar objetos ================
     glPushMatrix()
-    glTranslate(tx/20., ty/20., - zpos)
+    """glTranslate(tx/20., ty/20., - zpos)
     glRotate(ry, 1, 0, 0)
-    glRotate(rx, 0, 1, 0)
+    glRotate(rx, 0, 1, 0)"""
 
+    camera.view()
 
     # iluminação ================
     # iluminacao_da_cena(estadoluz0, estadoluz1, estadoluz2)
@@ -407,7 +427,8 @@ while True:
     # personagem.render()
     # mesinha.render()
     
-    tomme.render()
+    
+    #tomme.render()
     
     # Abajur().draw(0.7,{"x":-3,"y":-3,"z":1.45})
     # glColor3f(0, 0, 0)
