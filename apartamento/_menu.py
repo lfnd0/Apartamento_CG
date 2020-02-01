@@ -28,7 +28,7 @@ class Menu():
                 if evento.type == MOUSEBUTTONDOWN:
                     x = pygame.mouse.get_pos()[0]
                     y = pygame.mouse.get_pos()[1]
-                    if((x >= 536) and (x <= 754) and (y >= 536,34) and (y <= 433,67)):
+                    if((x >= 407,5) and (x <= 592,83) and (y >= 275,12) and (y <= 326,82)):
                         pygame.mixer.music.load("sons/aperta_o_botao_jogar.mp3")
                         pygame.mixer.music.play()
                         pygame.time.delay(500)
