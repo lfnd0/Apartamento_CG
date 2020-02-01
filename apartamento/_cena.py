@@ -199,7 +199,7 @@ class Cena():
                         else:
                             luz_ligada = True
                     elif e.key == K_ESCAPE:
-                        menu.iniciar()               
+                        sys.exit()               
                 elif e.type == KEYUP:
                     if e.key == K_w:
                         move_forward = False
