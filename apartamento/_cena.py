@@ -70,18 +70,25 @@ class Cena():
         fogao = OBJ('fogao.obj')
         pia_geladeira = OBJ('pia_geladeira.obj')
         tapete_1 = OBJ('tapete_1.obj')
-        tomada_1 = OBJ('tomada_1.obj')
-        tomada_2 = OBJ('tomada_2.obj')
+        tomadas = OBJ('tomadas.obj')
+        # tomada_1 = OBJ('tomada_1.obj')
+        # tomada_2 = OBJ('tomada_2.obj')
 
         tapete_2 = OBJ('tapete_2.obj')
-        rack = OBJ('rack.obj')
+        rack_1 = OBJ('rack_1.obj')
         televisao = OBJ('televisao.obj')
         sofa = OBJ('sofa.obj')
   
         cama = OBJ('cama.obj')
         guarda_roupa = OBJ('guarda_roupa.obj')
+        rack_2 = OBJ('rack_2.obj')
 
-        colisoes = [acabamento_1, acabamento_2, fogao, pia_geladeira, rack, sofa]
+        vaso_sanitario = OBJ('vaso_sanitario.obj')
+        pia_banheiro = OBJ('pia_banheiro.obj')
+        banheira = OBJ('banheira.obj')
+        rack_3 = OBJ('rack_3.obj')
+
+        colisoes = [fogao, pia_geladeira, rack_1, sofa] # acabamento_1, acabamento_2, sofa
         for i in range(len(paredes)):
             colisoes.append(paredes[i])
 
@@ -112,8 +119,8 @@ class Cena():
 
         luz_ligada = False
         
-        aux_colisoes1 = [paredes[8], paredes[9], paredes[10], cama, guarda_roupa, OBJ('porta_aberta_2.obj')]
-        aux_colisoes2 = [paredes[3], paredes[4], paredes[5], OBJ('porta_aberta_3.obj')]
+        aux_colisoes1 = [paredes[8], paredes[9], paredes[10], cama, guarda_roupa, rack_2, OBJ('porta_aberta_2.obj')]
+        aux_colisoes2 = [paredes[3], paredes[4], paredes[5], vaso_sanitario, pia_banheiro, banheira, rack_3, OBJ('porta_aberta_3.obj')]
 
         while True:
             tempo.tick(30)
@@ -157,17 +164,24 @@ class Cena():
 
             fogao.render()
             pia_geladeira.render()
-            tomada_1.render()
-            tomada_2.render()
+            tomadas.render()
+            # tomada_1.render()
+            # tomada_2.render()
             tapete_1.render()
-            tapete_2.render()
-
-            rack.render()
+            
+            rack_1.render()
             televisao.render()
             sofa.render()
+            tapete_2.render()
 
             cama.render()
             guarda_roupa.render()
+            rack_2.render()
+
+            vaso_sanitario.render()
+            pia_banheiro.render()
+            banheira.render()
+            rack_3.render()
 
             for e in pygame.event.get():
                 if e.type == QUIT:
