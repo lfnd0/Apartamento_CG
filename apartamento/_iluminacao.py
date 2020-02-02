@@ -13,7 +13,7 @@ def iluminacao_da_cena(luz_ligada):
     especMaterial = 20
 
     # Especifica que a cor de fundo da janela será branca
-    glClearColor(1.0, 1.0, 1.0, 1.0)
+    glClearColor(0, 0, 0, 0)
 
     # Habilita o modelo de colorização
     glShadeModel(GL_SMOOTH)   # GL_SMOOTH ou GL_FLAT
