@@ -31,7 +31,7 @@ class Menu():
                     # print(x)
                     # print(y)
                     if(x > 407.5 and x < 592.83 and y > 275.12 and y < 326.82):
-                        pygame.mixer.music.load("sons/aperta_o_botao_jogar.mp3")
+                        pygame.mixer.music.load("sons/entrar.mp3")
                         pygame.mixer.music.play()
                         pygame.time.delay(500)
                         cena = Cena()

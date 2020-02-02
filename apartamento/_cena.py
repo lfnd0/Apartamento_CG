@@ -18,7 +18,7 @@ class Cena():
         tela = pygame.display.set_mode(viewport, OPENGL | DOUBLEBUF)
         pygame.display.set_caption("Apartamento")
         tempo = pygame.time.Clock()
-        pygame.mixer.music.load("sons/fundo.mp2")
+        pygame.mixer.music.load("sons/cena.mp3")
         pygame.mixer.music.play(-1)
 
         glLightfv(GL_LIGHT0, GL_POSITION,  (-40, 200, 100, 0.0))
@@ -75,8 +75,7 @@ class Cena():
         # tomada_2 = OBJ('tomada_2.obj')
 
         tapete_2 = OBJ('tapete_2.obj')
-        rack_1 = OBJ('rack_1.obj')
-        televisao = OBJ('televisao.obj')
+        rack_1_TV = OBJ('rack_1_TV.obj')
         sofa = OBJ('sofa.obj')
   
         cama = OBJ('cama.obj')
@@ -88,7 +87,7 @@ class Cena():
         banheira = OBJ('banheira.obj')
         rack_3 = OBJ('rack_3.obj')
 
-        colisoes = [fogao, pia_geladeira, rack_1, sofa] # acabamento_1, acabamento_2, sofa
+        colisoes = [fogao, pia_geladeira, rack_1_TV, sofa] # acabamento_1, acabamento_2, sofa
         for i in range(len(paredes)):
             colisoes.append(paredes[i])
 
@@ -169,8 +168,7 @@ class Cena():
             # tomada_2.render()
             tapete_1.render()
             
-            rack_1.render()
-            televisao.render()
+            rack_1_TV.render()
             sofa.render()
             tapete_2.render()
 
