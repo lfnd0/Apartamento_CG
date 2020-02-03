@@ -37,12 +37,6 @@ def get_vertices(obj):
         vector.append([ x[0]+obj.pos[0], x[1]+obj.pos[1], x[2]+obj.pos[2] ])
     return vector
 
-def get_vert(obj):
-    vertices = []
-    for v in obj.vertices:
-        vertices.append(v)
-    return vertices
-
 def check_box_collision(box1, box2):
     """
     Check Collision of 2 box colliders

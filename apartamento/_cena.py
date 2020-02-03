@@ -21,15 +21,6 @@ class Cena():
         pygame.mixer.music.load("sons/cena.mp3")
         pygame.mixer.music.play(-1)
 
-        glLightfv(GL_LIGHT0, GL_POSITION,  (-40, 200, 100, 0.0))
-        glLightfv(GL_LIGHT0, GL_AMBIENT, (0.2, 0.2, 0.2, 1.0))
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, (0.5, 0.5, 0.5, 1.0))
-        glEnable(GL_LIGHT0)
-        glEnable(GL_LIGHTING)
-        glEnable(GL_COLOR_MATERIAL)
-        glEnable(GL_DEPTH_TEST)
-        glShadeModel(GL_SMOOTH) # shaders
-
         paredes = [
             OBJ('parede_1.obj'),
             OBJ('parede_2.obj'),
@@ -93,11 +84,12 @@ class Cena():
 
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
+
+        #mouse
         width, height = viewport
         gluPerspective(70.0, width/float(height), 1, 100.0)
         glEnable(GL_DEPTH_TEST)
         glMatrixMode(GL_MODELVIEW)
-
         rx, ry = (-90,88)
         tx, ty = (4, -1)
         zpos = 9
@@ -110,7 +102,7 @@ class Cena():
         move_back    = False
         move_left    = False
         move_right   = False
-        move_speed   = 0.1
+        move_speed   = 0.2
 
         open_speed = 6
         abrir_porta_2 = False
