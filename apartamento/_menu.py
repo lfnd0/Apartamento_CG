@@ -6,7 +6,7 @@ from _cena import Cena
 class Menu():
 
     def iniciar(self):
-        #criando ambiente
+        # Criando ambiente
         pygame.init()
         pygame.mixer.init()
         tela = pygame.display.set_mode((1000, 600))
@@ -28,8 +28,7 @@ class Menu():
                 if evento.type == MOUSEBUTTONDOWN:
                     x = pygame.mouse.get_pos()[0]
                     y = pygame.mouse.get_pos()[1]
-                    # print(x)
-                    # print(y)
+                    
                     if(x > 407.5 and x < 592.83 and y > 275.12 and y < 326.82):
                         pygame.mixer.music.load("sons/entrar.mp3")
                         pygame.mixer.music.play()

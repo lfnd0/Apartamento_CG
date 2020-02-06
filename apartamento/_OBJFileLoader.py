@@ -14,7 +14,6 @@ def MTL(filename):
         elif mtl is None:
             raise (ValueError, "mtl file doesn't start with newmtl stmt")
         elif values[0] == 'map_Kd':
-            # load the texture referred to by this declaration
             mtl[values[0]] = values[1]
             surf = pygame.image.load(mtl['map_Kd'])
             image = pygame.image.tostring(surf, 'RGBA', 1)
@@ -38,28 +37,19 @@ def get_vertices(obj):
     return vector
 
 def check_box_collision(box1, box2):
-    """
-    Check Collision of 2 box colliders
-    """
-    #print('\nCollision check:')
-
     x_max = max([e[0] for e in box1])
     x_min = min([e[0] for e in box1])
     y_max = max([e[1] for e in box1])
     y_min = min([e[1] for e in box1])
     z_max = max([e[2] for e in box1])
     z_min = min([e[2] for e in box1])
-    #print('Box1 min %.2f, %.2f, %.2f' % (x_min, y_min, z_min))
-    #print('Box1 max %.2f, %.2f, %.2f' % (x_max, y_max, z_max))    
     
     x_max2 = max([e[0] for e in box2])
     x_min2 = min([e[0] for e in box2])
     y_max2 = max([e[1] for e in box2])
     y_min2 = min([e[1] for e in box2])
     z_max2 = max([e[2] for e in box2])
-    z_min2 = min([e[2] for e in box2])
-    #print('Box2 min %.2f, %.2f, %.2f' % (x_min2, y_min2, z_min2))
-    #print('Box2 max %.2f, %.2f, %.2f' % (x_max2, y_max2, z_max2))        
+    z_min2 = min([e[2] for e in box2])        
     
     isColliding = []
 
@@ -80,9 +70,6 @@ def check_box_collision(box1, box2):
 
     if(z_min <= z_max2 and z_min >= z_min2): isColliding.append(True)
     else: isColliding.append(False)  
-
-    #if isColliding:
-    #    print('Colliding!')
         
     return isColliding
 
@@ -90,10 +77,10 @@ def chek_collisions(player, collisionMask=[]):
     allcolisions = { 'left':0, 'right':0, 'up':0,'down':0 }
     for collider in collisionMask:
         a = check_box_collision(get_vertices(player),get_vertices(collider))
-        #colisoes no eixo x
+        
         if a[0] and (a[4] or a[5]): allcolisions['down'] += 1
         if a[1] and (a[4] or a[5]): allcolisions['up']   += 1
-        #colisoes no eixo z
+        
         if a[4] and (a[0] or a[1]): allcolisions['left'] += 1
         if a[5] and (a[0] or a[1]): allcolisions['right']   += 1
 
@@ -101,15 +88,14 @@ def chek_collisions(player, collisionMask=[]):
 
 class OBJ:
     def __init__(self, filename, pos=[0,0,0],rot=[0,0,0],scale=[1,1,1], isTrigger=False):
-        """Carrega dados do arquivo OBJ. """
         self.vertices = []
         self.normals = []
         self.texcoords = []
         self.faces = []
 
-        self.pos       = pos
-        self.rot       = rot
-        self.scale     = scale
+        self.pos = pos
+        self.rot = rot
+        self.scale = scale
         self.isTrigger = isTrigger
 
         material = None
@@ -157,11 +143,8 @@ class OBJ:
             mtl = self.mtl[material]
             
             if 'texture_Kd' in mtl:
-                # diffuse texmap
                 glBindTexture(GL_TEXTURE_2D, mtl['texture_Kd'])
             else:
-                # diffuse color
-                #glColor(*mtl['Kd'])
                 glColor3f(1,1,1)
 
             glBegin(GL_POLYGON)

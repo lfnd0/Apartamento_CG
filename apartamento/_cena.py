@@ -76,19 +76,19 @@ class Cena():
         banheira = OBJ('banheira.obj')
         rack_3 = OBJ('rack_3.obj')
 
-        colisoes_sala_cozinha = [fogao, pia_geladeira, rack_1_TV, sofa] # acabamento_1, acabamento_2, sofa
+        colisoes_sala_cozinha = [fogao, pia_geladeira, rack_1_TV, sofa]
         for i in range(len(paredes)):
             colisoes_sala_cozinha.append(paredes[i])
 
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
 
-        #mouse camera
+        # Mouse e câmera
         width, height = viewport
         gluPerspective(70.0, width/float(height), 1, 100.0)
         glEnable(GL_DEPTH_TEST)
         glMatrixMode(GL_MODELVIEW)
-        rx, ry = (-90,88)
+        rx, ry = (-90, 88)
         tx, ty = (4, -1)
         zpos = 9
 
@@ -97,10 +97,10 @@ class Cena():
         mover_camera = False
 
         mover_para_frente = False
-        mover_para_tras    = False
-        mover_para_esquerda    = False
-        mover_para_direita   = False
-        mover_tomme   = 0.2
+        mover_para_tras = False
+        mover_para_esquerda = False
+        mover_para_direita = False
+        mover_tomme = 0.2
 
         abrir_porta_2 = False
         abrir_porta_3 = False
@@ -116,13 +116,13 @@ class Cena():
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
             glLoadIdentity()
 
-            # renderizar objetos ================
+            # Renderizar objetos
             glPushMatrix()
             glTranslate(tx/20., ty/20., - zpos)
             glRotate(ry, 1, 0, 0)
             glRotate(rx, 0, 1, 0)
 
-            # iluminação ================
+            # Sistema de iluminação
             iluminacao_da_cena(luz_ligada)
             
             for parede in paredes:
@@ -153,8 +153,6 @@ class Cena():
             fogao.render()
             pia_geladeira.render()
             tomadas.render()
-            # tomada_1.render()
-            # tomada_2.render()
             tapete_1.render()
             
             rack_1_TV.render()
@@ -231,8 +229,6 @@ class Cena():
             colisao_porta_2 = chek_collisions(tomme,[porta_fora_2, porta_dentro_2])
             colisao_porta_3 = chek_collisions(tomme,[porta_fora_3, porta_dentro_3])
 
-            # porta_dentro_2
-            # colisao_porta_3 = chek_collisions(tomme,[local_fora_porta_3])
 
             if colisao_porta_2['right'] != 0 or colisao_porta_2['left'] != 0 or colisao_porta_2['up'] != 0 or colisao_porta_2['down'] != 0:
                 abrir_porta_2 = True
